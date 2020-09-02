@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:gpx/src/grounspeak/model/cache.dart';
 import 'package:quiver/core.dart';
 
 import 'link.dart';
@@ -48,6 +49,12 @@ class Wpt {
   /// Links to external information.
   List<Link> links;
 
+  /// GPX 1.0 support
+  String url;
+
+  /// GPX 1.0 support
+  String urlname;
+
   /// Text of GPS symbol name. For interchange with other programs, use the
   /// exact spelling of the symbol as displayed on the GPS. If the GPS
   /// abbreviates words, spell them out
@@ -80,6 +87,8 @@ class Wpt {
   /// You can add extend GPX by adding your own elements from another schema
   /// here.
   Map<String, String> extensions;
+
+  Cache cache;
 
   /// Construct a new [Wpt] object.
   Wpt(
@@ -138,8 +147,7 @@ class Wpt {
   }
 
   @override
-  String toString() =>
-      "Wpt[${[lat, lon, ele, time, name, src, extensions].join(",")}]";
+  String toString() => "Wpt[${[lat, lon, ele, time, name, src, extensions].join(",")}]";
 
   @override
   int get hashCode => hashObjects([

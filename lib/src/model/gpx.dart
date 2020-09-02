@@ -13,6 +13,12 @@ class Gpx {
   /// Version number of your GPX document.
   String version = '1.1';
 
+  /// Flag to use GPX1.0 support
+  bool gpx10;
+
+  /// Flag to use GPX1.1 support
+  bool gpx11;
+
   /// The name or URL of the software that created your GPX document. This
   /// allows others to inform the creator of a GPX instance document that fails
   /// to validate.

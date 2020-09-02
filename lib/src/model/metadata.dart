@@ -19,6 +19,8 @@ class Metadata {
   /// The person or organization who created the GPX file.
   Person author;
 
+  String email;
+
   /// Copyright and license information governing use of the file.
   Copyright copyright;
 

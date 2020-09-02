@@ -1,7 +1,26 @@
 /// GPX tags names.
+class GpxTagV10 {
+  static const gpx = 'gpx';
+  static const version = 'version';
+  static const versionNumber = '1.0';
+
+  static const url = 'url';
+  static const urlname = 'urlname';
+
+  static const desc = 'desc';
+  static const author = 'author';
+  static const email = 'email';
+  static const copyright = 'copyright';
+  static const link = 'link';
+  static const time = 'time';
+  static const keywords = 'keywords';
+  static const bounds = 'bounds';
+}
+
 class GpxTagV11 {
   static const gpx = 'gpx';
   static const version = 'version';
+  static const versionNumber = '1.0';
   static const creator = 'creator';
   static const metadata = 'metadata';
   static const wayPoint = 'wpt';
