@@ -35,6 +35,7 @@ class Cache {
         country,
         state,
         shortDescription,
+        // longDescription,
         encodedHints
       ].join(",")}]";
 
@@ -52,6 +53,7 @@ class Cache {
   //       country,
   //       state,
   //       shortDescription,
+  // longDescription,
   //       encodedHints
   //     ]);
 }

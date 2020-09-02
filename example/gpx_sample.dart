@@ -21,7 +21,8 @@ Future<void> main() async {
   Directory current = Directory.current;
   print(current.path);
   print(' ');
-  final file = File('${current.path}/samples/GeoCaches.gpx');
+  final file = File('${current.path}/example/samples/GeoCaches.gpx');
+  // final file = File('${current.path}/samples/GeoCaches.gpx');
   final contents = await file.readAsString();
   final xmlGpx = GpxReader().fromString(contents);
   print("version: ${xmlGpx.version}");
@@ -35,6 +36,8 @@ Future<void> main() async {
   print("wp0: ${wp0}");
 
   print(wp0.cache);
+  print(wp0.cache.shortDescription);
+  print(wp0.cache.longDescription);
 
   // print(xmlGpx);
 }

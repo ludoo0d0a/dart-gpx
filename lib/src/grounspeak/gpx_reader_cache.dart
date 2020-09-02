@@ -112,9 +112,7 @@ class GpxReaderCache extends GpxReaderBase {
       desc.html = _parseBool(elm.attributes.firstWhere((attr) => attr.name == GpxTagGroundspeakDesc.attr_html).value);
     }
 
-    if (elm is XmlTextEvent) {
-      desc.text = elm.text;
-    }
+    desc.text = _readString(iterator, tagName);
 
     return desc;
   }
