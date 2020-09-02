@@ -22,4 +22,26 @@ class GpxReaderBase {
 
     return string;
   }
+
+  DateTime readDate(Iterator<XmlEvent> iterator, String name) {
+    return DateTime.parse(readString(iterator, name));
+  }
+
+  double readDouble(Iterator<XmlEvent> iterator, String name) {
+    return double.parse(readString(iterator, name));
+  }
+
+  int readInt(Iterator<XmlEvent> iterator, String name) {
+    return int.parse(readString(iterator, name));
+  }
+
+  bool parseBool(String value) {
+    return "True" == value;
+  }
+
+  String getAttributeValue(XmlStartElementEvent elm, String tagName) =>
+      elm.attributes.firstWhere((attr) => attr.name == tagName).value;
+
+  // String _readString(Iterator<XmlEvent> iterator, String name) => super.readString(iterator, name);
+
 }

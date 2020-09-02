@@ -14,11 +14,9 @@ class GpxReaderCache extends GpxReaderBase {
     // bool archived;
 
     if (elm is XmlStartElementEvent) {
-      cache.id = elm.attributes.firstWhere((attr) => attr.name == GpxTagGroundspeakCache.attr_id).value;
-      cache.available =
-          _parseBool(elm.attributes.firstWhere((attr) => attr.name == GpxTagGroundspeakCache.attr_available).value);
-      cache.archived =
-          _parseBool(elm.attributes.firstWhere((attr) => attr.name == GpxTagGroundspeakCache.attr_archived).value);
+      cache.id = getAttributeValue(elm, GpxTagGroundspeakCache.attr_id);
+      cache.available = parseBool(getAttributeValue(elm, GpxTagGroundspeakCache.attr_available));
+      cache.archived = parseBool(getAttributeValue(elm, GpxTagGroundspeakCache.attr_archived));
 
       if (!elm.isSelfClosing) {
         while (iterator.moveNext()) {
@@ -27,11 +25,11 @@ class GpxReaderCache extends GpxReaderBase {
           if (val is XmlStartElementEvent) {
             switch (val.name) {
               case GpxTagGroundspeakCache.name:
-                cache.name = _readString(iterator, GpxTagGroundspeakCache.name);
+                cache.name = readString(iterator, GpxTagGroundspeakCache.name);
                 break;
               // String placed_by; // MiJacko  // /groundspeak:placed_by  //
               case GpxTagGroundspeakCache.placedBy:
-                cache.placedBy = _readString(iterator, GpxTagGroundspeakCache.placedBy);
+                cache.placedBy = readString(iterator, GpxTagGroundspeakCache.placedBy);
                 break;
               // User owner; //id="10111927"  // MiJacko (F=373 H=1)  // /groundspeak:owner  //
               case GpxTagGroundspeakCache.owner:
@@ -39,28 +37,28 @@ class GpxReaderCache extends GpxReaderBase {
                 break;
               // String type; // Traditional Cache  // /groundspeak:type  //
               case GpxTagGroundspeakCache.type:
-                cache.type = _readString(iterator, GpxTagGroundspeakCache.type);
+                cache.type = readString(iterator, GpxTagGroundspeakCache.type);
                 break;
               // String container; //
               case GpxTagGroundspeakCache.container:
-                cache.container = _readString(iterator, GpxTagGroundspeakCache.container);
+                cache.container = readString(iterator, GpxTagGroundspeakCache.container);
                 break;
               // List<Attribute> attributes; //
               // double difficulty; // 1.5  // /groundspeak:difficulty  //
               case GpxTagGroundspeakCache.difficulty:
-                cache.difficulty = double.parse(_readString(iterator, GpxTagGroundspeakCache.difficulty));
+                cache.difficulty = double.parse(readString(iterator, GpxTagGroundspeakCache.difficulty));
                 break;
               // double terrain; // 1.5  // /groundspeak:terrain  //
               case GpxTagGroundspeakCache.terrain:
-                cache.terrain = double.parse(_readString(iterator, GpxTagGroundspeakCache.terrain));
+                cache.terrain = double.parse(readString(iterator, GpxTagGroundspeakCache.terrain));
                 break;
               // String country; // France  // /groundspeak:country  //
               case GpxTagGroundspeakCache.container:
-                cache.container = _readString(iterator, GpxTagGroundspeakCache.container);
+                cache.container = readString(iterator, GpxTagGroundspeakCache.container);
                 break;
               // String state; // Grand-Est  // /groundspeak:state  //
               case GpxTagGroundspeakCache.container:
-                cache.container = _readString(iterator, GpxTagGroundspeakCache.container);
+                cache.container = readString(iterator, GpxTagGroundspeakCache.container);
                 break;
               // Desc short_description; // html="False"  //
               // // /groundspeak:short_description  //
@@ -73,7 +71,7 @@ class GpxReaderCache extends GpxReaderBase {
                 break;
               // String encoded_hints; //>Glissière  // /groundspeak:encoded_hints>
               case GpxTagGroundspeakCache.container:
-                cache.container = _readString(iterator, GpxTagGroundspeakCache.container);
+                cache.container = readString(iterator, GpxTagGroundspeakCache.container);
                 break;
               // List<Log> logs;
               case GpxTagGroundspeakCache.logs:
@@ -97,22 +95,16 @@ class GpxReaderCache extends GpxReaderBase {
     return cache;
   }
 
-  bool _parseBool(String value) {
-    return "True" == value;
-  }
-
-  String _readString(Iterator<XmlEvent> iterator, String name) => super.readString(iterator, name);
-
   Desc _readDesc(Iterator<XmlEvent> iterator, String tagName) {
     final desc = Desc();
 
     final elm = iterator.current;
 
     if (elm is XmlStartElementEvent) {
-      desc.html = _parseBool(elm.attributes.firstWhere((attr) => attr.name == GpxTagGroundspeakDesc.attr_html).value);
+      desc.html = parseBool(getAttributeValue(elm, GpxTagGroundspeakDesc.attr_html));
     }
 
-    desc.text = _readString(iterator, tagName);
+    desc.text = readString(iterator, tagName);
 
     return desc;
   }
