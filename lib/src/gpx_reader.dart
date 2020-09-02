@@ -1,6 +1,4 @@
 import 'package:gpx/src/gpx_reader_base.dart';
-import 'package:gpx/src/grounspeak/gpx_reader_cache.dart';
-import 'package:gpx/src/grounspeak/model/gpx_groundspeak_tag.dart';
 import 'package:xml/xml_events.dart';
 
 import 'model/bounds.dart';
@@ -345,11 +343,6 @@ class GpxReader extends GpxReaderBase {
               break;
             case GpxTagV11.extensions:
               wpt.extensions = _readExtensions(iterator);
-              break;
-
-            /// groundspeak:cache
-            case GpxTagGroundspeakCache.cache:
-              wpt.cache = GpxReaderCache().readCache(iterator);
               break;
           }
         }

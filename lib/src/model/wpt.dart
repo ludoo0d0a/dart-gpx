@@ -1,5 +1,4 @@
 import 'package:collection/collection.dart';
-import 'package:gpx/src/grounspeak/model/cache.dart';
 import 'package:quiver/core.dart';
 
 import 'link.dart';
@@ -87,8 +86,6 @@ class Wpt {
   /// You can add extend GPX by adding your own elements from another schema
   /// here.
   Map<String, String> extensions;
-
-  Cache cache;
 
   /// Construct a new [Wpt] object.
   Wpt(
